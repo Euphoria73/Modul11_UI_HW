@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
 
-namespace Modul11_UI_HW
+namespace Modul11_UI_HW.Model
 {
     public class Structure
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Modul11_UI_HW
+namespace Modul11_UI_HW.Model
 {
     public static class EmployeeGenerator
     {       

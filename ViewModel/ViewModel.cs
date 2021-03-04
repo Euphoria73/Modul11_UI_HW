@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
+using Modul11_UI_HW.Model;
 
-namespace Modul11_UI_HW
+namespace Modul11_UI_HW.ViewModel
 {
-    class ViewModel
+    class ViewModel : ViewModelBase
     {
         private static ObservableCollection<Department> _myOrganization;     
       
@@ -20,7 +21,7 @@ namespace Modul11_UI_HW
                 return _myOrganization;
             }
 
-            set => Set(ref _myOrganization, value);
+            set => SetProperty(ref _myOrganization, value);
         }
 
         ViewModel() 

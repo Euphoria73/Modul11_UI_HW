@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modul11_UI_HW", "Modul11_UI_HW.csproj", "{32A0C76F-A38D-4542-9FEC-3C3BB949BD34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modul11_UI_HW", "Modul11_UI_HW.csproj", "{32A0C76F-A38D-4542-9FEC-3C3BB949BD34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
