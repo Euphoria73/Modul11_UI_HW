@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
-namespace Modul11_UI_HW.View
+namespace Modul11_UI_HW
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
