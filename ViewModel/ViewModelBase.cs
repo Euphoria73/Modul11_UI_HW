@@ -8,6 +8,9 @@ namespace Modul11_UI_HW.ViewModel
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Событие, обновляющее информацию в View при изменении в Model
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyCanged([CallerMemberName] string propertyName = null)
@@ -19,8 +22,8 @@ namespace Modul11_UI_HW.ViewModel
         /// запускает PropertyChanged событие при изменении значения свойства и возвращает true
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="storage"></param>
-        /// <param name="value"></param>
+        /// <param name="storage">записанное значение</param>
+        /// <param name="value">новое значение</param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
         protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null) 
@@ -33,6 +36,6 @@ namespace Modul11_UI_HW.ViewModel
             storage = value;
             this.OnPropertyCanged(propertyName);
             return true;
-        }
+        }       
     }
 }
