@@ -6,6 +6,9 @@ using System.Windows.Controls;
 
 namespace Modul11_UI_HW.EventHandlers
 {
+    /// <summary>
+    /// Класс, определяющий поведение TreeView
+    /// </summary>
     class TreeViewItemBehavior
     {
         public static bool GetBringIntoViewWhenSelected(TreeViewItem treeViewItem)
