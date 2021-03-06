@@ -9,8 +9,14 @@ namespace Modul11_UI_HW.EventHandlers
     /// <summary>
     /// Класс, определяющий поведение TreeView
     /// </summary>
-    class TreeViewItemBehavior
+    public class TreeViewItemBehavior
     {
+        //создаём свойство зависимости для связки данных модели к представлению
+        public static readonly DependencyProperty BringIntoViewWhenSelectedProperty =
+            DependencyProperty.RegisterAttached("BringIntoViewWhenSelected", typeof(bool), 
+                                                 typeof(TreeViewItemBehavior), new UIPropertyMetadata(false, OnBringIntoViewWhenSelectedChanged));
+                                                     
+
         public static bool GetBringIntoViewWhenSelected(TreeViewItem treeViewItem)
         {
             return (bool)treeViewItem.GetValue(BringIntoViewWhenSelectedProperty);
@@ -20,16 +26,10 @@ namespace Modul11_UI_HW.EventHandlers
         {
             treeViewItem.SetValue(BringIntoViewWhenSelectedProperty, value);
         }
-
-        //создаём свойство зависимости для связки данных модели к представлению
-        public static readonly DependencyProperty BringIntoViewWhenSelectedProperty =
-    DependencyProperty.RegisterAttached("BringIntoViewWhenSelected", typeof(bool),
-    typeof(TreeViewItemBehavior), new UIPropertyMetadata(false, OnBringIntoViewWhenSelectedChanged));
-
+               
         static void OnBringIntoViewWhenSelectedChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs e)
         {
-            TreeViewItem item = depObj as TreeViewItem;
-            if (item == null)
+            if (!(depObj is TreeViewItem item))
                 return;
 
             if (e.NewValue is bool == false)

@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using Modul11_UI_HW.Model;
 using System.Windows.Input;
+using Modul11_UI_HW.Commands;
 
 namespace Modul11_UI_HW.ViewModel
 {
@@ -52,22 +53,22 @@ namespace Modul11_UI_HW.ViewModel
             set => SetProperty(ref _myOrganization, value);
         }
 
-        ViewModel() 
+        public ViewModel() 
         {            
-            GetPopulateStructure(10); //пока так для проверки TODO:исправить на корректные данные
+            OpenComand = new LambdaCommand(OnOpenCommandExecuted, CanOpenCommandExecute); //пока так для проверки TODO:исправить на корректные данные
         }
 
         private ObservableCollection<Department> _departments;
 
         #region Команды управления программой
 
-        public ICommand CreateComand { get; } //Команда для открытия организации
+        public ICommand OpenComand { get; } //Команда для открытия организации
 
-        private bool isCreateCommandExecute(object file) => true;
+        private bool CanOpenCommandExecute(object file) => true;
 
-        public void GetPopulateStructure(int countDivisions)
+        public void OnOpenCommandExecuted(object file)
         {
-            PopulateStructure(_departments, _departments[0].NameDepartment, countDivisions);
+            PopulateStructure(_departments, _departments[0].NameDepartment, 10);
         }
 
         private void PopulateStructure(ObservableCollection<Department> deps, string nameDepartment, int countDivisions)
