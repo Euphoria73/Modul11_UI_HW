@@ -7,7 +7,7 @@ namespace Modul11_UI_HW.Model
     class Employee
     {
         private static int totalEmployees;
-        public int ID { get; private set; }
+        public int ID { get; private set; } //TODO: криво считает в рекурсии - одно значение распространяется на несколько рабочих
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
@@ -47,7 +47,8 @@ namespace Modul11_UI_HW.Model
         //Получение ID нового сотрудника в зависимости от общего числа сотрудников
         private int GetID()
         {
-            return totalEmployees += 1;
+            totalEmployees += 1;
+            return totalEmployees;
         }
 
         /// <summary>

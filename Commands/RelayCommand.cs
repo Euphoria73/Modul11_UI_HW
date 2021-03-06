@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Modul11_UI_HW.Commands
 {
-    class LambdaCommand : ICommand
+    class RelayCommand : ICommand
     {              
         private Action<object> execute;
         private Func<object, bool> canExecute;
@@ -20,7 +20,7 @@ namespace Modul11_UI_HW.Commands
                                                                 //Если список пустой, то присвоится null
         }
 
-        public LambdaCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;

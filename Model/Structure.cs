@@ -7,6 +7,10 @@ namespace Modul11_UI_HW.Model
 {
     public class Structure
     {
+        public Structure()
+        {
+
+        }
         /// <summary>
         /// Поле структуры организации
         /// </summary>

@@ -19,7 +19,6 @@ namespace Modul11_UI_HW.ViewModel
         {
             get => _title;
             set => SetProperty(ref _title, value);
-
         }
 
         Department selectedItem;
@@ -31,34 +30,37 @@ namespace Modul11_UI_HW.ViewModel
         {
             get => selectedItem;
             set => SetProperty(ref selectedItem, value);
-
         }
 
-        private static ObservableCollection<Department> _myOrganization;
-
+        private static ObservableCollection<Department> _myOrganization = new ObservableCollection<Department>
+                { new Department
+                    {
+                        NameDepartment = $"Department ",
+                        managerDepartment = new CEO("Vasya", "Pupkin")
+                    }
+                };
         /// <summary>
         /// Коллекция организации
         /// </summary>
-        public ObservableCollection<Department> MyOrganization 
+        public ObservableCollection<Department> MyOrganization
         {
             get
             {
-                foreach (var item in _myOrganization)
-                {
-                    item.managerDepartment.ManagerGetSalary(item);
-                }
+                PopulateStructure(_myOrganization, _myOrganization[0].NameDepartment, 5);
+                //foreach (var item in _myOrganization)
+                //{
+                //    item.managerDepartment.ManagerGetSalary(item);
+                //}
                 return _myOrganization;
             }
 
             set => SetProperty(ref _myOrganization, value);
         }
 
-        public ViewModel() 
-        {            
-            OpenComand = new LambdaCommand(OnOpenCommandExecuted, CanOpenCommandExecute); //пока так для проверки TODO:исправить на корректные данные
+        public ViewModel()
+        {
+            OpenComand = new RelayCommand(OnOpenCommandExecuted, CanOpenCommandExecute); //пока так для проверки TODO:исправить на корректные данные
         }
-
-        private ObservableCollection<Department> _departments;
 
         #region Команды управления программой
 
@@ -66,21 +68,22 @@ namespace Modul11_UI_HW.ViewModel
 
         private bool CanOpenCommandExecute(object file) => true;
 
+        //для открытия записи организации в формате JSON
         public void OnOpenCommandExecuted(object file)
         {
-            PopulateStructure(_departments, _departments[0].NameDepartment, 10);
+            //PopulateStructure(_myOrganization, _myOrganization[0].NameDepartment, 10);
+        }
+
+        private bool CanSaveCommandExecute(object file) => true;
+
+        //для сохранения записи организации в формате JSON
+        public void OnSaveCommandExecuted(object file)
+        {
+            //PopulateStructure(_myOrganization, _myOrganization[0].NameDepartment, 10);
         }
 
         private void PopulateStructure(ObservableCollection<Department> deps, string nameDepartment, int countDivisions)
         {
-            //если _departments будет null, то присвоим ему значение справа ??=
-            _departments ??= new ObservableCollection<Department>
-                { new Department
-                    {
-                        NameDepartment = $"Department ",
-                        managerDepartment = new CEO("Vasya", "Pupkin")
-                    }
-                };
             if (countDivisions == 0)
             {
                 return;

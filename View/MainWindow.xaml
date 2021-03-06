@@ -17,7 +17,7 @@
             x:Key="MyOrganization"
             DataType="{x:Type model:Department}"
             ItemsSource="{Binding Departments}">
-            <TextBlock Text="{Binding Name}" />
+            <TextBlock Text="{Binding NameDepartment}" />
         </HierarchicalDataTemplate>
     </Window.Resources>
     <DockPanel>
@@ -25,19 +25,24 @@
             <MenuItem Header ="Открыть" Command ="{Binding OpenCommand}"/>
             <MenuItem Header ="Сохранить" Command="{Binding SaveCommand}"/>
         </Menu>
-        
+
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="28*"/>
+                <ColumnDefinition Width="93*"/>
+                <ColumnDefinition Width="679*"/>
+            </Grid.ColumnDefinitions>
             <GroupBox Header="Структура организации" 
                       BorderBrush="Black"                    
-                      Margin="5,35,88,5" 
+                      Margin="5,35,88,5" Grid.ColumnSpan="3" 
  
                           >
                 <TreeView x:Name="TreeView_Changed1"                                                                            
                        ItemTemplate="{StaticResource MyOrganization}"
-                        ItemsSource="{Binding MyOrganization, UpdateSourceTrigger=PropertyChanged}"                                      
+                        ItemsSource="{Binding MyOrganization, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,416,0"                                      
                         >
                     <TreeView.ItemContainerStyle>
-                        <Style TargetType="TreeViewItem">                          
+                        <Style TargetType="TreeViewItem">
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="treeview:TreeViewItemBehavior.BringIntoViewWhenSelected" Value="True" />
@@ -52,6 +57,30 @@
                     </i:Interaction.Behaviors>
                 </TreeView>
 
+            </GroupBox>
+            <GroupBox
+                BorderBrush="Black"
+                Header="Список сотрудников"          
+                Margin="172,5,4,5" Grid.Column="2"
+                      >
+
+                <DataGrid x:Name ="StaffList"
+                           AutoGenerateColumns="False"
+                           VerticalGridLinesBrush="DarkGray"                          
+                           AlternatingRowBackground="LightGray" 
+                           ItemsSource ="{Binding SelectedItem.Employees, UpdateSourceTrigger=PropertyChanged}"
+                           Grid.Column="1"
+                           Margin="10,0,10,0" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = DateTime, StringFormat = dd.MM.yyyy}" IsReadOnly="True" Header ="Дата" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path = ID}" IsReadOnly="True" Header ="ID" Width="30"/>
+                        <DataGridTextColumn Binding="{Binding Path = FirstName}" IsReadOnly="False" Header ="Имя" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path = LastName}" IsReadOnly="False" Header ="Фамилия" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path = Age}" IsReadOnly="False" Header ="Возраст" Width="60"/>
+                        <DataGridTextColumn Binding="{Binding Path = Salary}" IsReadOnly="False" Header ="Зарплата" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path = Position}" IsReadOnly="True" Header ="Должность" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </GroupBox>
         </Grid>
     </DockPanel>
