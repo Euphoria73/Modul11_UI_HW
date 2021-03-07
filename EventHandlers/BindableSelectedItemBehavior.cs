@@ -7,6 +7,9 @@ using System.Windows.Interactivity;
 
 namespace Modul11_UI_HW.EventHandlers
 {
+    /// <summary>
+    /// Двусторонняя привязка View-ModelView для раскрытия структуры
+    /// </summary>
     class BindableSelectedItemBehavior : Behavior<TreeView>
     {
         public static readonly DependencyProperty SelectedItemProperty = 

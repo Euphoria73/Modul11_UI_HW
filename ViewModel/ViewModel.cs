@@ -35,7 +35,7 @@ namespace Modul11_UI_HW.ViewModel
         private static ObservableCollection<Department> _myOrganization = new ObservableCollection<Department>
                 { new Department
                     {
-                        NameDepartment = $"Department ",
+                        NameDepartment = "Top Organization",
                         managerDepartment = new CEO("Vasya", "Pupkin")
                     }
                 };
@@ -46,11 +46,11 @@ namespace Modul11_UI_HW.ViewModel
         {
             get
             {
-                PopulateStructure(_myOrganization, _myOrganization[0].NameDepartment, 5);
-                //foreach (var item in _myOrganization)
-                //{
-                //    item.managerDepartment.ManagerGetSalary(item);
-                //}
+                PopulateStructure(_myOrganization[0].Departments, "Department ", 5);
+                foreach (var item in _myOrganization)
+                {
+                    item.managerDepartment.ManagerGetSalary(item);
+                }
                 return _myOrganization;
             }
 
@@ -87,7 +87,7 @@ namespace Modul11_UI_HW.ViewModel
             if (countDivisions == 0)
             {
                 return;
-            }
+            }                   
             else
             {
                 for (int i = 0; i < countDivisions; i++)

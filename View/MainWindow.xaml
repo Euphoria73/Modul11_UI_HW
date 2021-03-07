@@ -48,12 +48,12 @@
                                     <Setter Property="treeview:TreeViewItemBehavior.BringIntoViewWhenSelected" Value="True" />
                                 </Trigger>
                             </Style.Triggers>
-                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                         </Style>
                     </TreeView.ItemContainerStyle>
                     <i:Interaction.Behaviors>
-                        <treeview:BindableSelectedItemBehavior SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <treeview:BindableSelectedItemBehavior SelectedItem="{Binding SelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
                     </i:Interaction.Behaviors>
                 </TreeView>
 
