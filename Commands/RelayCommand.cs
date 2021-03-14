@@ -7,8 +7,8 @@ namespace Modul11_UI_HW.Commands
 {
     class RelayCommand : ICommand
     {              
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+        private readonly Action<object> execute;
+        private readonly Func<object, bool> canExecute;
 
         /// <summary>
         /// Контроль событий в WPF
@@ -22,7 +22,7 @@ namespace Modul11_UI_HW.Commands
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException(nameof(Execute)); 
             this.canExecute = canExecute;
         }
 
@@ -40,10 +40,8 @@ namespace Modul11_UI_HW.Commands
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
+        public bool CanExecute(object parameter) => canExecute?.Invoke(parameter) ?? true; //Если не указан делегат считаем что команду можно выполнить
+                                                                                                     //в любом случае
     }
 
 }

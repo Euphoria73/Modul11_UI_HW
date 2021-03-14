@@ -5,30 +5,35 @@ using System.Collections.ObjectModel;
 
 namespace Modul11_UI_HW.Model
 {
-    public class Structure
-    {
-        public Structure()
-        {
-
-        }
+    static class Structure
+    {        
         /// <summary>
         /// Поле структуры организации
         /// </summary>
         private static readonly ObservableCollection<Department> departments = new ObservableCollection<Department>
                 { new Department
                     {
-                        NameDepartment = $"Department ",
+                        NameDepartment = $"Top Secret",
                         managerDepartment = new CEO("Vasya", "Pupkin")
                     }
                 };
-                
-        public void GetPopulateStructure(int countDivisions)
-        {
-            PopulateStructure(departments, departments[0].NameDepartment, countDivisions);
-        }
 
-        //Рекурсивный метод заполнения 
-        private void PopulateStructure(ObservableCollection<Department> deps, string nameDepartment, int countDivisions)
+        public static ObservableCollection<Department> GetDepartments
+        {
+            get
+            {
+                PopulateStructure(departments[0].Departments, "Department ", 5);
+                return departments;
+            }        
+        }
+               
+        /// <summary>
+        /// Заполнение структуры данными
+        /// </summary>
+        /// <param name="deps"></param>
+        /// <param name="nameDepartment"></param>
+        /// <param name="countDivisions"></param>
+        private static void PopulateStructure(ObservableCollection<Department> deps, string nameDepartment, int countDivisions)
         {
             if (countDivisions == 0)
             {
